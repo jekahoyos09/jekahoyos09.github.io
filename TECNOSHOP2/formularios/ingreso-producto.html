@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles-formulario.css">
+    <title>Formulario de Producto</title>
+</head>
+<body>
+    
+    <form action="procesar-pdcto.php" method="post" onsubmit="return enviarDatos()">
+
+        <h2>Registro de ingreso  de producto</h2>
+
+        <div class="form-section">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" id="fecha" required>
+        </div>
+        <div class="form-section">
+            <label for="factura">N° de factura</label>
+            <input type="number" name="factura" id="factura" required>
+        </div>
+        <div class="form-section">
+            <label for="codigo">Código de producto</label>
+            <input type="number" name="codigo" id="codigo" required>
+        </div>
+        <div class="form-section">
+            <label for="categoria">Categoría</label>
+            <input type="text" name="categoria" id="categoria" required>
+        </div>
+        <div class="form-section">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" required>
+        </div>
+        <div class="form-section">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" name="cantidad" id="cantidad" required>
+        </div>
+        
+
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width:0;"></div>
+            </div>
+        </div>
+        
+        <button type="submit">ENVIAR</button>
+    </form>
+
+    <script>
+
+        function enviarDatos(){
+            alert("Datos del formulario enviados");
+            return true;
+        }
+     
+        //seleccionar todas las secciones del formulario
+        const formSections=document.querySelectorAll('.form-section');
+
+        //seleccionar el elemento de la barra de progreso
+        const progressBarInner=document.querySelector('.progress-bar-inner');
+
+        //interactuar sobre cada seccion del formulario
+        formSections.forEach(section =>{
+            //agregar un evento  listener  para el evento input 
+            section.addEventListener('input', updateProgressbar);
+        })
+
+        //funcion que se llama cuando se actualiza un campo seccion del formulario
+        function updateProgressbar(){
+        // seleccionar todas las secciones del formulario qaue tiene el campo valido
+        const completedSections=document.querySelectorAll('.form-section input:valid').length;
+        
+        //obtener el total de secciones en el formulario
+        const totalSections=formSections.length;
+
+        //calcular el progreso en porcentajes 
+        const progress=(completedSections/totalSections)*100;
+
+        progressBarInner.style.width=`${progress}%`;
+        }
+
+    </script>
+
+</body>
+
+</html>

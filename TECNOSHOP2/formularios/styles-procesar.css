@@ -1,0 +1,18 @@
+body{
+    background-color:rgb(188, 242, 235);
+    display: flex;
+    justify-content: center;
+    border: solid 5px black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(33, 72, 77);
+    width: 500px;
+}
+
+h3{
+color:#000000;
+}
+
+p{
+color:#000000;
+}

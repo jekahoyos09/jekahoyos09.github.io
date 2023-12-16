@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles-formulario.css">
+    <title>Formulario ingreso de cliente</title>
+</head>
+<body>
+    
+    <form action="procesar-cliente.php" method="post" onsubmit="return enviarDatos()">
+
+        <h2>Ingreso de cliente nuevo</h2>
+
+        <div class="form-section">
+            <label for="nombre">Nombres</label>
+            <input type="text" name="nombre" id="nombre" required>
+        </div>
+        <div class="form-section">
+            <label for="apellido">Apellidos</label>
+            <input type="text" name="apellido" id="apellido" required>
+        </div>
+        <div class="form-section">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" id="direccion" required>
+        </div>
+        <div class="form-section">
+            <label for="telefono">Teléfono</label>
+            <input type="number" name="telefono" id="telefono" required>
+        </div>
+        <div class="form-section">
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" id="correo" required>
+        </div>
+     
+
+
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width:0;"></div>
+            </div>
+        </div>
+        
+        <button type="submit">ENVIAR</button>
+    </form>
+
+    <script>
+
+        function enviarDatos(){
+            alert("Datos del formulario enviados");
+            return true;
+        }
+     
+        //seleccionar todas las secciones del formulario
+        const formSections=document.querySelectorAll('.form-section');
+
+        //seleccionar el elemento de la barra de progreso
+        const progressBarInner=document.querySelector('.progress-bar-inner');
+
+        //interactuar sobre cada seccion del formulario
+        formSections.forEach(section =>{
+            //agregar un evento  listener  para el evento input 
+            section.addEventListener('input', updateProgressbar);
+        })
+
+        //funcion que se llama cuando se actualiza un campo seccion del formulario
+        function updateProgressbar(){
+        // seleccionar todas las secciones del formulario qaue tiene el campo valido
+        const completedSections=document.querySelectorAll('.form-section input:valid').length;
+        
+        //obtener el total de secciones en el formulario
+        const totalSections=formSections.length;
+
+        //calcular el progreso en porcentajes 
+        const progress=(completedSections/totalSections)*100;
+
+        progressBarInner.style.width=`${progress}%`;
+        }
+
+    </script>
+
+</body>
+
+</html>
